@@ -15,8 +15,13 @@ class App extends Component {
       terms:  [...this.state.terms, term]
     })
   }
-
+  delete(id){
+    const list = [...this.state.terms];
+    list.splice(id, 1);
+    this.setState({terms: list});
+  }
   render() {
+    console.log(this.state.terms)
     return (
       <div className="App">
         <AddComponent
@@ -24,7 +29,8 @@ class App extends Component {
         />
         <div>
         { this.state.terms.map((term,index)=> (
-          <p key={index}>{term}</p>
+          <p onClick={()=>this.delete(index)}
+             key={index}>{term}</p>
         ))}
         </div>
       </div>
